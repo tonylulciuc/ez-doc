@@ -55,7 +55,7 @@ public class EZDocFileTest {
         
         file = new EZFile();
         assertEquals(true, file.open("testfile\\", "hellofile.txt", IOFlag.WRITE));
-        assertEquals(true, file.write(hw.getBytes(), -1, 0));      
+        assertEquals(true, file.write(hw.getBytes(), 0, 0));      
     }
     
     /**
@@ -67,7 +67,7 @@ public class EZDocFileTest {
       EZFile file = new EZFile();
       String str = "Hello World! This is a TesT:Test@Test";
       assertEquals(true, file.open("testfile\\", "sentenceFile.txt", IOFlag.WRITE));
-      assertEquals(true, file.write(str.getBytes(), -1, 0));   
+      assertEquals(true, file.write(str.getBytes(), 0, 0));   
     }
     
     /**
