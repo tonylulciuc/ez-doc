@@ -256,7 +256,7 @@ public class EZFile {
                    if (!bAppendThisCycle)
                         iAppendPos = alParsedBuffer.size() - 1;
                    else
-                       ++iAppendPos;
+                       ++iAppendPos;               
                }
                
                 // Create string of word parsed
@@ -285,7 +285,10 @@ public class EZFile {
             if (!bAppendNextCycle)
                 bldExtractor = null;
             else
-                bldExtractor = new StringBuilder(alParsedBuffer.get(iAppendPos + 1));
+            {               
+                if (iAppendPos + 1 < alParsedBuffer.size())
+                    bldExtractor = new StringBuilder(alParsedBuffer.get(iAppendPos + 1));
+            }
         }
         
         return (true);

@@ -216,6 +216,9 @@ public class EZDocFileTest {
        parse = file.getParsedBuffer();
        assertEquals(20, parse.size());
        
+       for (String s : parse)
+           System.out.println(s);
+       
        assertEquals("Hello",          parse.get(0));
        assertEquals("World!",         parse.get(1));
        assertEquals("This",           parse.get(2));
@@ -226,16 +229,16 @@ public class EZDocFileTest {
        assertEquals("Test",           parse.get(7));
        assertEquals("@",              parse.get(8));
        assertEquals("Test",           parse.get(9));
-       assertEquals("Hello",          parse.get(0));
-       assertEquals("World!",         parse.get(1));
-       assertEquals("This",           parse.get(2));
-       assertEquals("is",             parse.get(3));
-       assertEquals("a",              parse.get(4));
-       assertEquals("TesT",           parse.get(5));        
-       assertEquals(":",              parse.get(6));
-       assertEquals("Test",           parse.get(7));
-       assertEquals("@",              parse.get(8));
-       assertEquals("Test",           parse.get(9));
+       assertEquals("Hello",          parse.get(10));
+       assertEquals("World!",         parse.get(11));
+       assertEquals("This",           parse.get(12));
+       assertEquals("is",             parse.get(13));
+       assertEquals("a",              parse.get(14));
+       assertEquals("TesT",           parse.get(15));        
+       assertEquals(":",              parse.get(16));
+       assertEquals("Test",           parse.get(17));
+       assertEquals("@",              parse.get(18));
+       assertEquals("Test",           parse.get(19));
        file.close();         
     }
   
