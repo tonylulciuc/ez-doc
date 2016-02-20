@@ -14,6 +14,6 @@ consist of four main components: graphical user interface (GUI),
 file manager (FM), file translator (FT), and script interpreter (SI). 
 The GUI will make it easier to perform the work needed to be done. FMs main 
 task is navigating through the user’s computer to find what to convert. 
-Finally, FT and SI are designed to work together to process the document.  
+Finally, FT and SI are designed to work together to process the document. 
 EZ-Doc is meant to simplify the process in creating HTML reports, 
 saving time and money.
