@@ -212,13 +212,10 @@ public class EZDocFileTest {
        
        file.setBufferSize(10);
        assertEquals(true, file.open("testfile\\", "t5Test.txt", IOFlag.READ));
-       assertEquals(true, file.processFile(strFilter));
+       assertEquals(true, file.parseFile(strFilter));
        parse = file.getParsedBuffer();
-       assertEquals(20, parse.size());
        
-       for (String s : parse)
-           System.out.println(s);
-       
+       assertEquals(20, parse.size());   
        assertEquals("Hello",          parse.get(0));
        assertEquals("World!",         parse.get(1));
        assertEquals("This",           parse.get(2));
@@ -242,4 +239,26 @@ public class EZDocFileTest {
        file.close();         
     }
   
+    @Test
+    public void shouldGiveCorrectFilterIndex()
+    {
+        EZFile file = new EZFile();
+        ArrayList<String> parse = null;
+        ArrayList<Integer> indices;
+        String[] strFilter = new String[2];
+        
+        strFilter[0] = ":";
+        strFilter[1] = "@";      
+        file.open("testfile\\", "t6Test.txt", IOFlag.READ);
+        file.setBufferSize("Hello World! This is a TesT:Test@Test".length() - 21);  
+        file.parseFile(strFilter);
+        parse = file.getParsedBuffer();
+        indices = file.getFilterIndex();
+
+        assertEquals(2, indices.size());
+        assertEquals(":", parse.get(indices.get(0)));
+        assertEquals("@", parse.get(indices.get(1)));       
+        
+        file.close();  
+    }
 }
