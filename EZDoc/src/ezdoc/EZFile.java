@@ -72,6 +72,15 @@ public class EZFile {
     }
     
     /**
+     * Inspect/Mutate filter indices
+     * @return ArrayList<Integer>, indices of where filters are located in parsed list
+     */
+    public ArrayList<Integer> getFilterIndex()
+    {
+        return (alFilterIndex);
+    }
+    
+    /**
      * Current total bytes read from file
      * @return int, bytes read from file
      */
@@ -273,14 +282,26 @@ public class EZFile {
                 if (bAppendThisCycle)
                 {
                     if (bldExtractor.length() > 0)
+                    {
                             alParsedBuffer.set(iAppendPos, bldExtractor.substring(0));
+                            
+                            // Save filter index
+                            if (iFilterPos != iBufferSize)
+                                alFilterIndex.add(alParsedBuffer.size() - 2);
+                    }
                     
                     bAppendThisCycle = false;
                 }
                 else
                 {
                     if (bldExtractor.length() > 0)
+                    {
                         alParsedBuffer.add(iSize + 1, bldExtractor.substring(0));
+                        
+                        // Save filter index
+                        if (iFilterPos != iBufferSize)
+                            alFilterIndex.add(alParsedBuffer.size() - 2);
+                    }
                 }
             }
             
@@ -468,7 +489,7 @@ public class EZFile {
 
                 // Add Filte to the Parsed list.
                 alParsedBuffer.add(_strFilter[alFilter.get(i)]);
-
+                
                 // Erase Builder data
                 strCpy = new StringBuilder();
 
