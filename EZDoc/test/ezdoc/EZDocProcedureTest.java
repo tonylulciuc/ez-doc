@@ -51,7 +51,7 @@ public class EZDocProcedureTest {
     @Test
     public void shouldPassTagCheck()
     {
-        Word word = new Word("Hello", new WordTag(WordTag.Type.UNKNOWN));  
+        Word word = new Word("Hello", WordTag.UNKNOWN);  
     }
     
     /**
@@ -70,10 +70,10 @@ public class EZDocProcedureTest {
         ip              = new InjectionProcedure();
         alWord          = new ArrayList<>();
         
-        alWord.add(new Word("WRITE TEST 1\n\r", new WordTag(WordTag.Type.KEYWORD)));
-        alWord.add(new Word("WRITE TEST 2\n\r", new WordTag(WordTag.Type.KEYWORD)));
-        alWord.add(new Word("WRITE TEST 3\n\r", new WordTag(WordTag.Type.KEYWORD)));
-        alWord.add(new Word("....\n\r", new WordTag(WordTag.Type.KEYWORD)));
+        alWord.add(new Word("WRITE TEST 1\n\r", WordTag.KEYWORD));
+        alWord.add(new Word("WRITE TEST 2\n\r", WordTag.KEYWORD));
+        alWord.add(new Word("WRITE TEST 3\n\r", WordTag.KEYWORD));
+        alWord.add(new Word("....\n\r", WordTag.KEYWORD));
         
         assertEquals(true, ip.execute(alWord, fosOutputStream, Boolean.TRUE));
         
@@ -99,10 +99,10 @@ public class EZDocProcedureTest {
         alProcedure.add(new TestProcedure());
         alProcedure.add(new InjectionProcedure());
        
-        alWord.add(new Word("WRITE TEST 1\n\r", new WordTag(WordTag.Type.KEYWORD)));
-        alWord.add(new Word("WRITE TEST 2\n\r", new WordTag(WordTag.Type.KEYWORD)));
-        alWord.add(new Word("WRITE TEST 3\n\r", new WordTag(WordTag.Type.KEYWORD)));
-        alWord.add(new Word("....\n\r", new WordTag(WordTag.Type.KEYWORD)));
+        alWord.add(new Word("WRITE TEST 1\n\r", WordTag.KEYWORD));
+        alWord.add(new Word("WRITE TEST 2\n\r", WordTag.KEYWORD));
+        alWord.add(new Word("WRITE TEST 3\n\r", WordTag.KEYWORD));
+        alWord.add(new Word("....\n\r", WordTag.KEYWORD));
         
         assertEquals("Testing TestProcedure...", alProcedure.get(0).execute(0, 0, 0));
         assertEquals(true, ((InjectionProcedure)alProcedure.get(1)).execute(alWord, fosOutputStream, Boolean.TRUE));
