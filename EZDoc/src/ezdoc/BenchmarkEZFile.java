@@ -30,7 +30,7 @@ public class BenchmarkEZFile {
         log.open("", "ezfile_benchmark.txt", IOFlag.WRITE);
         result.open("testfile\\", "parsed_benchmarkfile.txt", IOFlag.WRITE);
         
-        test.processFile(strFilter);
+        test.parseFile(strFilter);
         test.close();
         
         System.out.println("done..");
