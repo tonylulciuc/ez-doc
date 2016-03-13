@@ -16,7 +16,8 @@ import java.util.ArrayList;
  * February 16, 2016
  */
 public class EZFile {
-    private ArrayList<String> alParsedBuffer;    
+    private ArrayList<String> alParsedBuffer;  
+    private ArrayList<Integer> alFilterIndex;
     private FileInputStream   fisStream;
     private FileOutputStream  fosStream;
     private StringBuilder     bldExtractor;    
@@ -30,7 +31,8 @@ public class EZFile {
     
     public EZFile()
     {
-        alParsedBuffer  = null;        
+        alParsedBuffer  = null;     
+        alFilterIndex   = null;
         fisStream       = null;
         strFileName     = null;
         bldExtractor    = null;
@@ -70,7 +72,7 @@ public class EZFile {
     }
     
     /**
-     * Current total byts read from file
+     * Current total bytes read from file
      * @return int, bytes read from file
      */
     public int getTotalBytesRead()
@@ -126,6 +128,7 @@ public class EZFile {
             
             // Initialize parsed list
             alParsedBuffer = new ArrayList<>();
+            alFilterIndex  = new ArrayList<>();
         }
         catch (FileNotFoundException err)
         {
