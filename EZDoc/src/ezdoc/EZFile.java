@@ -301,8 +301,10 @@ public class EZFile {
      */
     public Boolean read(int _iOffSet)
     {
+        // If file was opened for reading
         if (ioFlag == IOFlag.READ && fisStream != null && bBuffer != null)
         {
+            // Reset buffer
             setBytes(0, iRead, (byte)0x00);
             
             try
