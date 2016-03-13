@@ -362,7 +362,7 @@ public class EZFile {
      * @param _strFilter[in] filter for file
      * @return Boolean, true if data was read from file
      */
-    public Boolean processFile(String[] _strFilter)
+    public Boolean parseFile(String[] _strFilter)
     {
         boolean bBufferProcessed = false;
         
@@ -370,10 +370,26 @@ public class EZFile {
         while (read())
         {
             bBufferProcessed = true;
+
             parseBuffer(_strFilter);
         }
         
         return (bBufferProcessed);
+    }
+    
+    /**
+     *  Returns file contents in a String object
+     *  @return String, file data
+     */
+    public String readFile()
+    {
+        StringBuilder bld = new StringBuilder();
+       
+        // While data is being read
+        while (read())
+            bld.append(new String(bBuffer));
+        
+        return (bld.substring(0));
     }
     
     /**
