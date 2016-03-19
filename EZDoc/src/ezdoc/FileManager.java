@@ -12,7 +12,9 @@ import java.util.ArrayList;
  */
 public interface FileManager {
     public Boolean openFolder(int _iIndex);
-    public Boolean openFolder(String _strPath);
+    public Boolean openFolder(String _strPath, String _strFolderName);
     public Boolean closeFolder();
+    public String getCurrentFolder();
+    public String getCurrentPath();
     public ArrayList<String> getFolderContents();
 }
