@@ -44,34 +44,56 @@ public class EZDocFileManagerTest {
     // @Test
     // public void hello() {}
     
+    /**
+     * Simple folder Navigation
+     */
     @Test
-    void shouldOpenFolderTestAndStepBackOut()
+    public void shouldOpenFolderTestAndStepBackOut()
     {
-        FileViewer fView = new FileViewer();
+        FileNavigator fView = new FileNavigator();
         
-        assertEquals(true, fView.openFolder(null, "testfile"));
+        assertEquals(true, fView.openFolder("testfile"));
         assertEquals("testfile", fView.getCurrentFolder());
         assertEquals(true, fView.closeFolder());
-        assertEquals("ez-doc", fView.getCurrentFolder());    
+        assertEquals("EZDoc", fView.getCurrentFolder());    
     }
     
+    /**
+     * Goes to dumbyfolder and acquires contents of folder
+     */
     @Test
-    void shouldAcquireContentsOfDumbyFolder()
+    public void shouldAcquireContentsOfDumbyFolder()
     {
-        FileViewer fView = new FileViewer();
+        FileNavigator fView = new FileNavigator();
         ArrayList<String> data;
         
-        assertEquals(true, fView.openFolder(null, "testfile"));
-        assertEquals(true, fView.openFolder(null, "dumbyfolder"));
+        assertEquals(true, fView.openFolder("testfile"));
+        assertEquals(true, fView.openFolder("dumbyfolder"));
         assertEquals("dumbyfolder", fView.getCurrentFolder());
-        assertEquals("ez-doc", fView.getCurrentFolder()); 
         
         data = fView.getFolderContents();
         assertEquals(3, data.size());
-        assertEquals("a_folder",  data.get(0));
-        assertEquals("a_file.txt",    data.get(1));
+        assertEquals("a_file.txt",    data.get(0));       
+        assertEquals("a_folder",      data.get(1));
         assertEquals("a_picture.bmp", data.get(2));
-        fView.closeFolder();
-        fView.closeFolder();
+        assertEquals(true, fView.closeFolder());
+        assertEquals(true, fView.closeFolder());
+    }
+    
+    /**
+     * Fails attempt to step out of application folder.
+     */
+    @Test
+    public void shouldFailToStepOutOfFolder()
+    {
+        FileNavigator fView = new FileNavigator();
+        assertEquals(true, fView.closeFolder());
+        assertEquals(true, fView.closeFolder());
+        assertEquals(true, fView.closeFolder());
+        assertEquals(true, fView.closeFolder());
+        assertEquals(true, fView.closeFolder());
+        assertEquals(true, fView.closeFolder());
+        assertEquals(true, fView.closeFolder());
+        assertEquals(false, fView.closeFolder());
     }
 }
