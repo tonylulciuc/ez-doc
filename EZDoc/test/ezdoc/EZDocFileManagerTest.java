@@ -68,8 +68,8 @@ public class EZDocFileManagerTest {
         ArrayList<String> data;
         
         assertEquals(true, fView.openFolder("testfile"));
-        assertEquals(true, fView.openFolder("dumbyfolder"));
-        assertEquals("dumbyfolder", fView.getCurrentFolder());
+        assertEquals(true, fView.openFolder("dummyfolder"));
+        assertEquals("dummyfolder", fView.getCurrentFolder());
         
         data = fView.getFolderContents();
         assertEquals(3, data.size());
