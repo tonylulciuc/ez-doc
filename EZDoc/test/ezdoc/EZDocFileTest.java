@@ -261,4 +261,13 @@ public class EZDocFileTest {
         
         file.close();  
     }
+    
+    @Test 
+    public void shouldConvertFileIntoString()
+    {
+        EZFile file = new EZFile();
+        file.open("testfile\\", "t7Test.txt", IOFlag.READ);
+        file.setBufferSize("Hello World! This is a TesT:Test@Test".length());
+        assertEquals("Hello World! This is a TesT:Test@Test", file.readFile());
+    }
 }
