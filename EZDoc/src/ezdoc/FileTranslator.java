@@ -10,7 +10,7 @@ package ezdoc;
  * @author Antony
  */
 public interface FileTranslator {
-    public Boolean loadFile(String _strPath, String _strFileName, Boolean _bWebDoc);
-    public void setWebDocument(String _strPath, String _strFileName);
-    public Boolean processFile();   
+    public void saveWebReportTo(String _strPath);
+    public void processFile(String _strPath, String _strFileName);
+    public FileState getState();
 }
