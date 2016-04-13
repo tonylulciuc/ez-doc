@@ -18,9 +18,9 @@ public class ScriptMethods {
         
         StringBuilder returnHTML = new StringBuilder();
         String temp1;
-
         int i = 0;
-
+        int iNext = 0;
+        
         // ADDED : Sentinel value for while loop
         //         Loops forever or breaks if '{' not found
         int iSize = s.length();
@@ -46,14 +46,28 @@ public class ScriptMethods {
         
         i = 0;
         while (i < temp1.length()) {
-
-            if (temp1.charAt(i) == '<') {
-                returnHTML.append(lessThan);
-            } else if (temp1.charAt(i) == '>') {
-                returnHTML.append(greaterThan);
-            } else {
-                returnHTML.append(temp1.charAt(i));
+            switch (temp1.charAt(i))
+            {
+                case '<':
+                    returnHTML.append(lessThan);
+                    break;
+                case '>':
+                    returnHTML.append(greaterThan);
+                    break;
+                default:
+                    // Check for extra documentation
+                    if ((iNext = fileHeaderDocumentation(returnHTML, temp1, i)) == i)
+                    {
+                        // Check for packages/imports
+                         if ((iNext = fileDependencies(returnHTML, temp1, i)) == i)  
+                              returnHTML.append(temp1.charAt(i));
+                         else
+                             i = iNext - 1;
+                    }
+                    else
+                        i = iNext - 1;
             }
+            
             i++;
         }
         returnHTML.append("</div><br>");
@@ -192,5 +206,32 @@ public class ScriptMethods {
         return returnHTML.toString();
 
     }
-
+    
+    /**
+     * Attempts to locate extra information provided by user in begining of 
+     * document.
+     * @param _bldHtml[in] HTML data
+     * @param _raw[in] Raw file data
+     * @param _index [in] current position in raw data
+     * @return integer[out] next position in _raw
+     */
+    private static int fileHeaderDocumentation(StringBuilder _bldHtml, String _raw, int _index)
+    {
+        
+        return (_index);
+    }
+    
+    /**
+     * Attempts to locate extra information provided by user in begining of 
+     * document.
+     * @param _bldHtml[in] HTML data
+     * @param _raw[in] Raw file data
+     * @param _index [in] current position in raw data
+     * @return integer[out] next position in _raw
+     */
+    private static int fileDependencies(StringBuilder _bldHtml, String _raw, int _index)
+    {
+        
+        return (_index);
+    }
 }
