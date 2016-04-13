@@ -24,7 +24,7 @@ public class ScriptMethods {
         //         Loops forever or breaks if '{' not found
         int iSize = s.length();
         
-        while (s.charAt(i) != '{' || i == iSize) {
+        while (i < iSize && s.charAt(i) != '{') {
             i++;
         }
 
