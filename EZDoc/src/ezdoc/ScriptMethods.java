@@ -11,10 +11,11 @@ package ezdoc;
  */
 public class ScriptMethods {
 
-    static String lessThan = "&lt;";
-    static String greaterThan = "&gt;";
+    private static final String lessThan = "&lt;";      // NON-Modifiable data member
+    private static final String greaterThan = "&gt;";   // NON-Modifiable data member
 
     public static String classDec(String s) {
+        
         StringBuilder returnHTML = new StringBuilder();
         String temp1;
 
@@ -41,6 +42,8 @@ public class ScriptMethods {
                 + "<body>");
 
         returnHTML.append("<div class='Class'><br>");
+        
+        
         i = 0;
         while (i < temp1.length()) {
 
