@@ -1,6 +1,4 @@
-Class: classHTML,methodHTML
-Method: method
-#:
-Input: input
-Output: output
-OVariables: ovar
+@
+return: returns
+param: param 
+author: author
