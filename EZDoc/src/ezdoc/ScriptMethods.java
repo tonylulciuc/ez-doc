@@ -20,7 +20,11 @@ public class ScriptMethods {
 
         int i = 0;
 
-        while (s.charAt(i) != '{') {
+        // ADDED : Sentinel value for while loop
+        //         Loops forever or breaks if '{' not found
+        int iSize = s.length();
+        
+        while (s.charAt(i) != '{' || i == iSize) {
             i++;
         }
 
