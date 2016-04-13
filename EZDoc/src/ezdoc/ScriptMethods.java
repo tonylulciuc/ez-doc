@@ -60,7 +60,7 @@ public class ScriptMethods {
         StringBuilder returnHTML = new StringBuilder();
         s.trim();
 
-        int i = 1;
+        int i = 2;
         while (s.charAt(i) != '\n') {
             i++;
         }

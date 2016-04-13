@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Fresh Market</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body><div class='Class'><br>
+public class EZFile </div><br><br><div class='method'>}<br>
+    public int getBufferSize(){</div><br><div class='description'>Description:<br>
+      Inspect buffer size
+      </div><br><div class='return'>Return:<br> int, size of buffer
+     </div><br><br><div class='method'>}<br>
+    public byte[] getBuffer(){</div><br><div class='description'>Description:<br>
+      InspectMutate Buffer
+      </div><br><div class='return'>Return:<br> byte[], data to write to or read from file
+     </div><br><br><div class='method'>}<br>
+    public ArrayList&lt;String&gt; getParsedBuffer(){</div><br><div class='description'>Description:<br>
+      InspectMutate parsed buffer elements
+      </div><br><div class='return'>Return:<br> List of elements of buffer
+     </div><br><br><div class='method'>}<br>
+    public ArrayList&lt;Integer&gt; getFilterIndex(){</div><br><div class='description'>Description:<br>
+      InspectMutate filter indices
+      </div><br><div class='return'>Return:<br> ArrayList&lt;Integer&gt;, indices of where filters are located in parsed list
+     </div><br><br><div class='method'>}<br>
+    public int getTotalBytesRead(){</div><br><div class='description'>Description:<br>
+      Current total bytes read from file
+      </div><br><div class='return'>Return:<br> int, bytes read from file
+     </div><br><br><div class='method'>}<br>
+    public Boolean setBufferSize(int _iBufSize){</div><br><div class='description'>Description:<br>
+      Reallocates buffer to new size
+      </div><br><div class='param'>Parameter:<br> _iBufSize[in] new buffer size
+      </div><br><div class='return'>Return:<br> Boolean, true if the buffer was reset else false
+     </div><br><br><div class='method'>}<br>
+    public Boolean open(String _strPath, String _strFile, IOFlag _ioFlag){</div><br><div class='description'>Description:<br>
+      OpensCreates file for IO operations
+      </div><br><div class='param'>Parameter:<br> _strPath[in] file path, exclude if fle in current working dir.
+      </div><br><div class='param'>Parameter:<br> _strFile[in] file name
+      </div><br><div class='param'>Parameter:<br> _ioFlag[in] enumeration representing input or output
+      </div><br><div class='return'>Return:<br> Boolean, true on successful file instantiation else false.
+     </div><br><br><div class='method'>}<br>
+    public void close(){</div><br><div class='description'>Description:<br>
+      Closes open file
+     </div><br><br><div class='method'>}<br>
+    public Boolean parseBuffer(String[] _strFilter){</div><br><div class='description'>Description:<br>
+      Separates buffer into an ArrayList, filter may be applied to buffer to 
+      create more buffer elements
+      </div><br><div class='param'>Parameter:<br> _strFilter[in] character sequences to search for in buffer
+      </div><br><div class='return'>Return:<br> Boolean, true if buffer was organized else false 
+     </div><br><br><div class='method'>}<br>
+    public Boolean read(int _iOffSet){</div><br><div class='description'>Description:<br>
+      Read from file
+      </div><br><div class='param'>Parameter:<br> _iOffSet[in] offset from current position
+      </div><br><div class='return'>Return:<br> boolean, true on successful read else false
+     </div><br><br><div class='method'>}<br>
+    public Boolean read(){</div><br><div class='description'>Description:<br>
+      Read from file
+      </div><br><div class='return'>Return:<br> boolean, true on successful read else false
+     </div><br><br><div class='method'>}<br>
+    public Boolean write(byte[] _bData, int _iOffSet, int _iLength)            {</div><br><div class='description'>Description:<br>
+      Write to file
+      </div><br><div class='param'>Parameter:<br> _bData[in] data to write
+      </div><br><div class='param'>Parameter:<br> _iOffSet[in] offset from current position
+      </div><br><div class='param'>Parameter:<br> _iLength[in] length of buffer
+      </div><br><div class='return'>Return:<br> Boolean, true on success else false
+     </div><br><br><div class='method'>}<br>
+    public Boolean parseFile(String[] _strFilter){</div><br><div class='description'>Description:<br>
+      Reads and Parses entire file with filter
+      </div><br><div class='param'>Parameter:<br> _strFilter[in] filter for file
+      </div><br><div class='return'>Return:<br> Boolean, true if data was read from file
+     </div><br><br><div class='method'>}<br>
+    public String readFile(){</div><br><div class='description'>Description:<br>
+       Returns file contents in a String object
+       </div><br><div class='return'>Return:<br> String, file data
+     </div><br><br><div class='method'>}<br>
+    protected int applyFilter(String[] _strFilter, int _iStartIndex){</div><br><div class='description'>Description:<br>
+      Finds Char sequences based on filter specifications and adds to list
+      </div><br><div class='param'>Parameter:<br> _strFilter[in] buffer filter
+      </div><br><div class='param'>Parameter:<br> _iStartIndex[in] current position in buffer
+      </div><br><div class='return'>Return:<br> int, position of first character for the first filter found else 
+              -1.
+     </div><br><br><div class='method'>}<br>
+    private void setBytes(int _iStart, int _iEnd, byte _bByte){</div><br><div class='description'>Description:<br>
+      Set buffer block to some value
+      </div><br><div class='param'>Parameter:<br> _iStart[in] start pos
+      </div><br><div class='param'>Parameter:<br> _iEnd[in] ens pos
+      </div><br><div class='param'>Parameter:<br> _bByte[in] value to replace buffer block with
+     </div><br><br><div class='method'>}<br>ackage ezdoc;{</div><br><br><div class='method'>}<br>ackage ezdoc;{</div><br></body></html>

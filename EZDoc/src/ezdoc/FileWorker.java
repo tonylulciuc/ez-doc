@@ -16,8 +16,8 @@ public class FileWorker implements FileTranslator {
     
     public FileWorker()
     {
-        si = new ScriptInterpreter("");
         fsState = FileState.FILE_INACTIVE;
+        strReportPath = "";
     }
     
     /**
@@ -39,6 +39,29 @@ public class FileWorker implements FileTranslator {
     public void processFile(String _strPath, String _strFileName)
     {
         // TODO: code to translate file to web report goes here
+        EZFile file = new EZFile();
+        String[] html = _strFileName.split("\\.", 0);
+        String data = null;
+        byte[] dhtml = null;
+        int iSize = 0;
+        
+        file.open(_strPath, _strFileName, IOFlag.READ);
+        file.setBufferSize(512);
+        data = file.readFile();
+        si = new ScriptInterpreter(data);
+        file.close();       
+        
+        if (strReportPath.length() == 0)
+            strReportPath = _strPath;
+        
+        dhtml = new byte[iSize = si.htmlString.length()];
+        
+        for (int i = 0; i < iSize; i++)
+           dhtml[i] = (byte)si.htmlString.charAt(i);
+       
+        file.open(strReportPath, html[0] + ".html", IOFlag.WRITE); 
+        file.write(dhtml, 0, iSize);
+        file.close();
     }
        
     /**

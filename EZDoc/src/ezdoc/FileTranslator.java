@@ -10,7 +10,22 @@ package ezdoc;
  * @author Antony
  */
 public interface FileTranslator {
+    /**
+     * 
+     * @param _strPath 
+     */
     public void saveWebReportTo(String _strPath);
+    
+    /**
+     * 
+     * @param _strPath
+     * @param _strFileName 
+     */
     public void processFile(String _strPath, String _strFileName);
+    
+    /**
+     * 
+     * @return 
+     */
     public FileState getState();
 }

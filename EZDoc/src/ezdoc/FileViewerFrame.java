@@ -49,7 +49,7 @@ public class FileViewerFrame extends JFrame {
     getContentPane().add(splitPane);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setSize(640, 480);
-    setVisible(true);
+        setVisible(true);
   }
  
   private String getFileDetails(File file) {

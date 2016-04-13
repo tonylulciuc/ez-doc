@@ -31,7 +31,7 @@ public class ScriptInterpreter {
     final int numOfCommands = 10;
     String[][] commandsAndMethods = new String[numOfCommands][10];
     String test;
-    String htmlString;
+    public String htmlString;
     public String cleanedInput;
     public String stringArray[];
     String delim;
@@ -222,6 +222,7 @@ public class ScriptInterpreter {
 
             try {
                 ret = (String) m.invoke(null, arguments.get(i));
+                
             } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
                 Logger.getLogger(ScriptInterpreter.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -15,9 +15,10 @@ public class EZDoc {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        bezf = new BenchmarkEZFile();
-        bezf.run();
-        System.exit(0);
+        //FileViewerFrame display = new FileViewerFrame(System.getProperty("user.dir"));
+        FileWorker worker = new FileWorker();
+        worker.processFile("src\\ezdoc\\", "EZFile.java");
+ 
     }
     
 }
