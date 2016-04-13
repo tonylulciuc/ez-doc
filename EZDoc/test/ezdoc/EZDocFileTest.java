@@ -270,4 +270,21 @@ public class EZDocFileTest {
         file.setBufferSize("Hello World! This is a TesT:Test@Test".length());
         assertEquals("Hello World! This is a TesT:Test@Test", file.readFile());
     }
+    
+    
+    @Test
+    public void shouldParseString()
+    {
+        EZFile parser = new EZFile();
+        String test = "Hello World How R U!";
+        
+        parser.setStringToParse(test);
+        parser.parseBuffer(null);
+        ArrayList<String> data = parser.getParsedBuffer();
+        assertEquals("Hello", data.get(0));
+        assertEquals("World", data.get(1));
+        assertEquals("How", data.get(2));
+        assertEquals("R", data.get(3));
+        assertEquals("U!", data.get(4));
+    }
 }
