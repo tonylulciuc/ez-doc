@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor. inherits
+ */
 package ezdoc;
 import java.io.*;
 import java.util.ArrayList;
@@ -99,6 +103,20 @@ public class EZFile {
         bBuffer        = new byte[_iBufSize];
         iBufferSize    = _iBufSize;
         return (true);
+    }
+    
+    /**
+     * Sets string to parse 
+     * @param _str 
+     */
+    public void setStringToParse(String _str)
+    {
+        bBuffer     = _str.getBytes();
+        iBufferSize = _str.length();
+        
+        // Initialize parsed list
+        alParsedBuffer = new ArrayList<>();
+        alFilterIndex  = new ArrayList<>();
     }
     
     /**
@@ -545,3 +563,6 @@ public class EZFile {
         }
     }
 }
+
+
+    
