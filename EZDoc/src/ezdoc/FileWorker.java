@@ -47,21 +47,31 @@ public class FileWorker implements FileTranslator {
         
         file.open(_strPath, _strFileName, IOFlag.READ);
         file.setBufferSize(512);
+        
+        fsState = FileState.FILE_ACTIVE;
         data = file.readFile();
-        si = new ScriptInterpreter(data);
-        file.close();       
         
-        if (strReportPath.length() == 0)
-            strReportPath = _strPath;
-        
-        dhtml = new byte[iSize = si.htmlString.length()];
-        
-        for (int i = 0; i < iSize; i++)
-           dhtml[i] = (byte)si.htmlString.charAt(i);
-       
-        file.open(strReportPath, html[0] + ".html", IOFlag.WRITE); 
-        file.write(dhtml, 0, iSize);
-        file.close();
+        if (data.length() > 0)
+        {
+            si = new ScriptInterpreter(data);
+            file.close();       
+
+            if (strReportPath.length() == 0)
+                strReportPath = _strPath;
+
+            dhtml = new byte[iSize = si.htmlString.length()];
+
+            for (int i = 0; i < iSize; i++)
+               dhtml[i] = (byte)si.htmlString.charAt(i);
+
+            file.open(strReportPath, html[0] + ".html", IOFlag.WRITE); 
+            file.write(dhtml, 0, iSize);
+            file.close();
+            fsState = FileState.FILE_SUCCESS;
+            
+        }else{
+            fsState = FileState.FILE_FAIL;
+        }
     }
        
     /**
