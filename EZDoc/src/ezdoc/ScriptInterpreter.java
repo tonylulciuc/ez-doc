@@ -67,7 +67,12 @@ public class ScriptInterpreter {
 
     }
 
-    /*this method goes through the methods array*/
+    /*This method goes through my array of strings and attempts to build the arrayLists of commands
+    and arguments to be passed to the ScriptMethods class
+    #param No parameter is passed
+    #return This method returns true if it makes it through, otherwise it returns false indicating an
+    error occured
+    */
     private boolean findCommands() {
         int i = 0;
         int j = 0;
@@ -114,8 +119,29 @@ public class ScriptInterpreter {
                 arguments.add(classArray[0]);
 
             } else {
+                String specialChars[] = splitArray[1].split("@");
+                
+                if(specialChars.length==1){
+                
                 commandsFound.add("methodDec");
                 arguments.add(splitArray[1]);
+                }
+                else{
+                    String annotation = annotationCheck(specialChars[1]);
+                    String temp2;
+                    
+                    if(annotation != null){
+                        temp2=specialChars[1].replaceFirst(annotation, "");
+                        commandsFound.add("methodDec");
+                    arguments.add(temp2);
+                    }
+                    
+                    else{
+                        commandsFound.add("methodDec");
+                        arguments.add(specialChars[1]);
+                    }
+                    
+                }
 
                 String comments[] = splitArray[0].split(delim);
 
@@ -149,7 +175,10 @@ public class ScriptInterpreter {
     }
 
     /*this method goes through the string retrieved from the command script and generates a multidimensional array. The [k][0]th element
-     is always the command and the [k][1 through j] element represent the methods that must be called for that command.*/
+     is always the command and the [k][1 through j] element represent the methods that must be called for that command.
+    #param No parameter is needed for this method
+    #return void method so no return
+    */
     private void generateCommandAndMethodArrays() {
         int i = 0;
         int begin = 0;
@@ -199,7 +228,8 @@ public class ScriptInterpreter {
     }
 
     /*The buildHTMLString will use reflection to call the correct Instruction class methods and pass the substrings to perform work.
-     The return from these method calls will then be put together utilizing a StringBuilder and returned to the ScriptInterpreter*/
+     The return from these method calls will then be put together utilizing a StringBuilder and returned to the ScriptInterpreter
+    */
     private String buildHTMLString() {
         int i = 0;
         int j = 0;
@@ -244,7 +274,9 @@ public class ScriptInterpreter {
 
     /*This method simply goes through the entire input file and assumes we are looking at a class file and removes all of the source code from
      methods. This leaves us with essentially a class file with its methods and the comments that describe the method.
-     */
+    #param String 's' is the String that represents the entire file data you want built into an HTML document
+    #return Returns a string that has all source code other than class and method declarations removed
+    */
     private String cleanedFileInput(String s) {
         String tempString = new String();
         int i = 0;
@@ -258,7 +290,7 @@ public class ScriptInterpreter {
             /*if you are inside a method and read in a closing bracket then pop the top opening bracket. If the stack is empty
              that means you have exited the method source code so set insideMethod to false
              */
-            if (insideMethod && s.charAt(i) == '}') {
+            if (insideMethod && (s.charAt(i) == '}' && s.charAt(i-1) == ' ')){
                 stack.pop();
 
                 if (stack.isEmpty()) {
@@ -276,12 +308,14 @@ public class ScriptInterpreter {
             if (!insideMethod && !firstBracket && s.charAt(i) == '{') {
                 firstBracket = true;
                 tempString = tempString.concat(Character.toString(s.charAt(i)));
-            } /*This means you are entering a method so we want to ignore the source code in the method*/ else if (!insideMethod && s.charAt(i) == '{' && firstBracket) {
+            } /*This means you are entering a method so we want to ignore the source code in the method*/ 
+            else if (!insideMethod && s.charAt(i) == '{' && firstBracket ) {
                 insideMethod = true;
                 stack.push(s.charAt(i));
                 tempString = tempString.concat("{");
 
-            } /*if you are not inside of a method then add the character to the tempString*/ else if (!insideMethod) {
+            } /*if you are not inside of a method then add the character to the tempString*/ 
+            else if (!insideMethod) {
                 tempString = tempString.concat(Character.toString(s.charAt(i)));
             }
 
@@ -291,6 +325,24 @@ public class ScriptInterpreter {
 
         //return the string that was built from the passed document
         return tempString;
+    }
+    
+    private String annotationCheck(String s){
+        
+        if(s.startsWith("Override")){
+            return "Override";
+        }
+        
+        else if (s.startsWith("SuppressWarnings")){
+            return "SuppressWarnings";
+        }
+        
+        else if (s.startsWith("Deprecated")){
+            return "Deprecated";
+        }
+        
+        
+        return null;
     }
 
 }

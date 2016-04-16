@@ -17,7 +17,7 @@ public class EZDoc {
     public static void main(String[] args) {
         //FileViewerFrame display = new FileViewerFrame(System.getProperty("user.dir"));
         FileWorker worker = new FileWorker();
-        worker.processFile("src\\ezdoc\\", "EZFile.java");
+        worker.processFile("src\\ezdoc\\", "FileWorker.java");
  
     }
     

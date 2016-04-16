@@ -82,10 +82,10 @@ public class ScriptMethods {
         s.trim();
 
         int i = 2;
-        while (s.charAt(i) != '\n') {
+        while (s.charAt(i) != '\n' && i<s.length()-1) {
             i++;
         }
-
+        i++;
         temp1 = s.substring(1, i);
         temp1.replaceAll("\n", "");
 

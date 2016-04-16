@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>EZ-Doc</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body><div class='Class'><br>
+public class ScriptInterpreter </div><br><br><div class='method'>}<br>
+    private boolean findCommands() {{</div><br><div class='description'>Description:<br>This method goes through my array of strings and attempts to build the arrayLists of commands
+    and arguments to be passed to the ScriptMethods class
+    </div><br><div class='param'>Parameter:<br> No parameter is passed
+    </div><br><div class='return'>Return:<br> This method returns true if it makes it through, otherwise it returns false indicating an
+    error occured
+    </div><br><br><div class='method'>}<br>
+    private void generateCommandAndMethodArrays() {{</div><br><div class='description'>Description:<br>this method goes through the string retrieved from the command script and generates a multidimensional array. The [k][0]th element
+     is always the command and the [k][1 through j] element represent the methods that must be called for that command.
+    </div><br><div class='param'>Parameter:<br> No parameter is needed for this method
+    </div><br><div class='return'>Return:<br> void method so no return
+    </div><br><br><div class='method'>}<br>
+    private String buildHTMLString() {{</div><br><div class='description'>Description:<br>The buildHTMLString will use reflection to call the correct Instruction class methods and pass the substrings to perform work.
+     The return from these method calls will then be put together utilizing a StringBuilder and returned to the ScriptInterpreter
+    </div><br><br><div class='method'>}<br>
+    private String cleanedFileInput(String s) {{</div><br><div class='description'>Description:<br>This method simply goes through the entire input file and assumes we are looking at a class file and removes all of the source code from
+     methods. This leaves us with essentially a class file with its methods and the comments that describe the method.
+    </div><br><div class='param'>Parameter:<br> String 's' is the String that represents the entire file data you want built into an HTML document
+    </div><br><div class='return'>Return:<br> Returns a string that has all source code other than class and method declarations removed
+    </div><br>}</body></html>
