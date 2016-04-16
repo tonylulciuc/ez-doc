@@ -36,7 +36,7 @@ public class ScriptMethods {
                 + "<html>\n"
                 + "<head>\n"
                 + "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
-                + "<title>Fresh Market</title>\n"
+                + "<title>EZ-Doc</title>\n"
                 + "<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n"
                 + "</head>\n"
                 + "<body>");

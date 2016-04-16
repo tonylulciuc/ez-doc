@@ -84,14 +84,18 @@ public class ScriptInterpreter {
             commandsFound.add("classDec");
             arguments.add(classArray[0]);
 
-        } else {
+        } else if (classArray.length ==2) {
             commandsFound.add("classDec");
             arguments.add(classArray[1]);
 
             /*String comments[]=classArray[0].split(delim);
              commandsFound.add("classComments");
              arguments.add(classArray[0]);*/
+        } else if (classArray.length == 3){
+            commandsFound.add("classDec");
+            arguments.add(classArray[2]);
         }
+        
         i++;
 
         //need to loop through each element of the methods array
@@ -102,7 +106,8 @@ public class ScriptInterpreter {
             String splitArray[] = stringArray[i].split("\\Q*/\\E");
 
             /*we want to add the method declaration to the commandsFound array first*/
-            if (splitArray.length == 0) {
+            if (splitArray[0].equals("")) {
+                break;
 
             } else if (splitArray.length == 1) {
                 commandsFound.add("methodDec");
@@ -232,7 +237,7 @@ public class ScriptInterpreter {
         }
 
         /*closing the HTML document properly*/
-        returnString.append("</body></html>");
+        returnString.append("}</body></html>");
 
         return returnString.toString();
     }
