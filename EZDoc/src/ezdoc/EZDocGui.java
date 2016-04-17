@@ -225,7 +225,7 @@ class EZDocGui {
              public void actionPerformed(ActionEvent ae) {
              try {
              System.out.println("Process: " + currentFile);
-             fileTranslator.processFile(currentFile.getPath(), null);
+             fileTranslator.processFile(currentFile.getPath(), currentFile.getName());
              } catch (Throwable t) {
              showThrowable(t);
              }
