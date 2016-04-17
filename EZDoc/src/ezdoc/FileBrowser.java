@@ -274,30 +274,6 @@ class FileBrowser {
         tree.setSelectionInterval(0, 0);
     }
 
-    private TreePath findTreePath(File find) {
-        for (int ii = 0; ii < tree.getRowCount(); ii++) {
-            TreePath treePath = tree.getPathForRow(ii);
-            Object object = treePath.getLastPathComponent();
-            DefaultMutableTreeNode node = (DefaultMutableTreeNode) object;
-            File nodeFile = (File) node.getUserObject();
-
-            if (nodeFile == find) {
-                return treePath;
-            }
-        }
-        // not found
-        return null;
-    }
-
-    private void showErrorMessage(String errorMessage, String errorTitle) {
-        JOptionPane.showMessageDialog(
-                gui,
-                errorMessage,
-                errorTitle,
-                JOptionPane.ERROR_MESSAGE
-        );
-    }
-
     private void showThrowable(Throwable t) {
         t.printStackTrace();
         JOptionPane.showMessageDialog(
