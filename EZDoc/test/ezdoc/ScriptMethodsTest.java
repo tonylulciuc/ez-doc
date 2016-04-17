@@ -58,16 +58,20 @@ public class ScriptMethodsTest {
         
         String htmlExpected;
         String htmlActual;
+    ScriptMethods.outerFormatTagStart="";
+    ScriptMethods.innerFormatTagStart="";
+    ScriptMethods.outerFormatTagEnd="";
+    ScriptMethods.innerFormatTagEnd="";
+    ScriptMethods.tableDataTagStart="";
+    ScriptMethods.tableDataTagEnd="";
+    ScriptMethods.tableHeaderTagStart="";
+    ScriptMethods.tableHeaderTagEnd="";
+    ScriptMethods.openingBracket="";
+    ScriptMethods.closingBracket="";
         
-        htmlExpected="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" >\n"
-                + "<html>\n"
-                + "<head>\n"
-                + "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
-                + "<title>EZ-Doc</title>\n"
-                + "<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n"
-                + "</head>\n"
-                + "<body>"
-                +"<div class='Class'><br>"
+        
+        
+        htmlExpected="<div class='Class'><br>"
                 +"public class Word "
                 + "</div><br>";
         
@@ -113,11 +117,11 @@ public class ScriptMethodsTest {
         String htmlExpected;
         String htmlActual;
         
-        htmlExpected="<br><div class='method'>}<br>private boolean findCommands() {</div><br>";
+        htmlExpected="<br><div class='method'><br>private boolean findCommands() </div><br>";
         
         htmlActual = ScriptMethods.methodDec(methodDec);
         
-        assertEquals(htmlExpected,htmlActual);
+        assertEquals(htmlActual, htmlExpected);
         
         
     }
