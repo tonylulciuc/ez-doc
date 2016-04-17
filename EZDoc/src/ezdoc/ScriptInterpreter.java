@@ -42,8 +42,13 @@ public class ScriptInterpreter {
     public ScriptInterpreter(String s) {
         EZFile file = new EZFile();
 
-        cleanedInput = cleanedFileInput(s);
+        
+        /*checks to make sure that the passed string is not null or the empty string*/
+        if(s!=null){
 
+           s= s.trim();
+         if(!s.equals("")){   
+        cleanedInput = cleanedFileInput(s);    
         /*Loading the Command script into the Script Interpreter*/
         file.open("testfile\\", "Commands.txt", IOFlag.READ);
         file.setBufferSize(250);
@@ -80,6 +85,14 @@ public class ScriptInterpreter {
                 + "<body>");
 
         htmlString.append(buildHTMLString());
+         }
+        }
+        /*if the string passed to the interpreter is null or the empty string return the
+        empty string.
+        */
+        else{
+            htmlString.append("").toString();
+        }
 
     }
 
@@ -114,8 +127,53 @@ public class ScriptInterpreter {
              commandsFound.add("classComments");
              arguments.add(classArray[0]);*/
         } else if (classArray.length == 3){
+            String classComments[]=classArray[1].split("\\Q/*\\E");
+            String classCommands[]=classComments[1].split(delim);
+            
             commandsFound.add("classDec");
             arguments.add(classArray[2]);
+            
+            int m=0;
+            
+            
+            while(m<classCommands.length){
+                j=0;
+                
+                while (j < commandsAndMethods.length && commandsAndMethods[j][0] != null) {
+
+                        if (classCommands[m].startsWith(commandsAndMethods[j][0])) {
+                            commandsFound.add(commandsAndMethods[j][1]);
+                            command = true;
+                        }
+                        j++;
+                    }
+                
+            
+            if (!command){
+                        int f=0;
+                        
+                        while(f<classCommands[m].length()){
+                            if(Character.isAlphabetic(classCommands[m].charAt(f))){
+                                validDescription=true;
+                                break;
+                            }
+                            f++;
+                        }
+                        
+                        if(validDescription){
+                        commandsFound.add(descriptionCommand);
+                        arguments.add(classCommands[m]);
+                        }
+                    }
+                    
+                    if(command)
+                    arguments.add(classCommands[m]);
+                    m++;
+                    command = false;
+                }
+            
+            
+            
         }
         
         i++;
@@ -202,7 +260,9 @@ public class ScriptInterpreter {
         }
 
         return true;
-    }
+        
+        }
+    
 
     /*this method goes through the string retrieved from the command script and generates a multidimensional array. The [k][0]th element
      is always the command and the [k][1 through j] element represent the methods that must be called for that command.

@@ -64,13 +64,30 @@ public class ScriptInterpreterTest {
 
     }
 
+   
+    /*The next 3 testing methods simply ensure that a valid string is being passed to 
+    the ScriptInterpreter constructor. If the string is not valid then the htmlString
+    is simply set as the empty string.
+    */
     @Test
-    public void shouldCompareCommandFileAndPassedString() {
-        String s = "Class this class is being tested Test File";
-        ScriptInterpreter si = new ScriptInterpreter(s);
-
-        assertEquals(true, si.commandFound);
+    public void shouldReturnEmptyStringIfNullStringIsPassed(){
+        ScriptInterpreter si = new ScriptInterpreter(null);
+        assertEquals(si.htmlString.toString(),"");
     }
+    
+    @Test
+    public void shouldReturnEmptyStringIfEmptyStringIsPassed(){
+        ScriptInterpreter si = new ScriptInterpreter("");
+        assertEquals("", si.htmlString.toString());
+    }
+    
+    @Test
+    public void shouldReturnEmptyStringIfStringOfWhiteSpaceIsPassed(){
+        ScriptInterpreter si = new ScriptInterpreter("          ");
+        assertEquals("",si.htmlString.toString());
+    }
+    
+    
 
     @Test
     public void shouldRemoveAllSouceCodeFromMethods() {

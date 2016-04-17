@@ -241,6 +241,51 @@ public class ScriptMethodsTest {
         
     }
     
+            /*uses example string and HTML I built by hand to ensure that the return from the author
+    method creates the HTML expected.
+    */
+       @Test
+    public void shouldCallAuthorAndReturnHTML() {
+        String author = "author Antony\n" +
+" * February 16, 2016";
+        
+        String htmlExpected;
+        String htmlActual;
+        
+        htmlExpected="<div class='author'>Author:<br> Antony\n  February 16, 2016</div><br>";
+        
+        htmlActual = ScriptMethods.author(author);
+        
+        assertEquals(htmlActual,htmlExpected);
+        
+        
+    }
+    
+    /*The next two tests simply ensure that our program will not bomb if empty or
+    null strings are mistakenly passed to the returns method. Additionally, the empty
+    string that is returned should not cause issues with the rest of the HTML being
+    generated.
+    */
+    @Test
+    public void nullStringToAuthorShouldReturnEmptyString(){
+    String test = null;
+    String expected = "";
+    String actual = ScriptMethods.author(test);
+    
+    assertEquals(expected,actual);
+        
+    }
+    
+     @Test
+    public void emptyStringToAuthorShouldReturnEmptyString(){
+    String test = "";
+    String expected = "";
+    String actual = ScriptMethods.author(test);
+    
+    assertEquals(expected,actual);
+        
+    }
+    
         /*uses example string and HTML I built by hand to ensure that the return from the description
     method creates the HTML expected.
     */

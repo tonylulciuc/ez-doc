@@ -191,7 +191,54 @@ public class ScriptMethods {
     }
 
     public static String author(String s) {
-        return "Successful author call.\n";
+          String temp1;
+        String temp2;
+        String returnStatement;
+        StringBuilder returnHTML = new StringBuilder();
+
+        /*If the string passed is null, simply return the empty string*/
+        if (s == null || s.equals("")) {
+            return "";
+        }
+
+        temp1 = s.replaceAll("/", "");
+        temp2 = temp1.replaceAll("\\*", "");
+        temp2.trim();
+
+        int i = 0;
+        while (temp2.charAt(i) != ' ') {
+            i++;
+        }
+
+        returnStatement = temp2.substring(i, temp2.length());
+
+        returnHTML.append("<div class='author'>");
+        returnHTML.append(innerFormatTagStart);
+        returnHTML.append(tableDataTagStart);
+        returnHTML.append("Author:<br>");
+        returnHTML.append(tableDataTagEnd);
+        i = 0;
+        returnHTML.append(tableDataTagStart);
+
+        while (i < returnStatement.length()) {
+
+            if (returnStatement.charAt(i) == '<') {
+                returnHTML.append(lessThan);
+            } else if (returnStatement.charAt(i) == '>') {
+                returnHTML.append(greaterThan);
+            } else {
+                returnHTML.append(returnStatement.charAt(i));
+            }
+            i++;
+        }
+
+        returnHTML.append(tableDataTagEnd);
+        returnHTML.append(innerFormatTagEnd);
+        returnHTML.append("</div>");
+
+        returnHTML.append("<br>");
+
+        return returnHTML.toString();
     }
 
     public static String returns(String s) {
