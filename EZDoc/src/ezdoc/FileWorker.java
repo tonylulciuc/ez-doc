@@ -51,8 +51,8 @@ public class FileWorker implements FileTranslator {
         fsState = FileState.FILE_ACTIVE;
         data = file.readFile();
         
-        if (data.length() > 0)
-        {
+        if (data.length() > 0){
+            
             si = new ScriptInterpreter(data);
             file.close();       
 
