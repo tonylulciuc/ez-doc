@@ -45,7 +45,7 @@ public class FileWorker implements FileTranslator {
         byte[] dhtml = null;
         int iSize = 0;
         
-        file.open(_strPath, _strFileName, IOFlag.READ);
+        file.open(null, _strPath, IOFlag.READ);
         file.setBufferSize(512);
         
         fsState = FileState.FILE_ACTIVE;
@@ -58,14 +58,11 @@ public class FileWorker implements FileTranslator {
 
             if (strReportPath.length() == 0)
                 strReportPath = _strPath;
-
-            dhtml = new byte[iSize = si.htmlString.length()];
-
-            for (int i = 0; i < iSize; i++)
-               dhtml[i] = (byte)si.htmlString.charAt(i);
+            
+            dhtml = si.getByteArray();
 
             file.open(strReportPath, html[0] + ".html", IOFlag.WRITE); 
-            file.write(dhtml, 0, iSize);
+            file.write(dhtml, 0, dhtml.length);
             file.close();
             fsState = FileState.FILE_SUCCESS;
             

@@ -96,6 +96,10 @@ public class ScriptInterpreter {
 
     }
 
+    public byte[] getByteArray(){
+        return (htmlString.substring(0).getBytes());
+    }
+    
     /*This method goes through my array of strings and attempts to build the arrayLists of commands
     and arguments to be passed to the ScriptMethods class
     #param No parameter is passed
