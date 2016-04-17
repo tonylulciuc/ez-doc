@@ -72,7 +72,7 @@ public class ScriptInterpreter {
         formatOutput();
 
         /*The findCommands method builds linked lists of commands and arguments.*/
-        commandFound = findCommands();
+        findCommands();
         
         htmlString.append("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" >\n"
                 + "<html>\n"
@@ -99,10 +99,9 @@ public class ScriptInterpreter {
     /*This method goes through my array of strings and attempts to build the arrayLists of commands
     and arguments to be passed to the ScriptMethods class
     #param No parameter is passed
-    #return This method returns true if it makes it through, otherwise it returns false indicating an
-    error occured
+    #return This method has no return
     */
-    private boolean findCommands() {
+    private void findCommands() {
         int i = 0;
         int j = 0;
         String s;
@@ -259,7 +258,7 @@ public class ScriptInterpreter {
             i++;
         }
 
-        return true;
+        
         
         }
     

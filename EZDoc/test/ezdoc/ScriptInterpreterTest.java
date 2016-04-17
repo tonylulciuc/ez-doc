@@ -51,7 +51,7 @@ public class ScriptInterpreterTest {
 
         file.open("testfile\\", "Commands.txt", IOFlag.WRITE);
 
-        String str = "@\r\ntest\r\nreturn: returns\r\nparam: param \r\nauthor: author";
+        String str = "@\r\ndefault\r\nreturn: returns\r\nparam: param \r\nauthor: author";
         assertEquals(true, file.write(str.getBytes(), 0, str.length()));
 
         ScriptInterpreter si = new ScriptInterpreter("Test");
