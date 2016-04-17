@@ -1,5 +1,5 @@
 @
-test
+default
 return: returns
 param: param 
 author: author
