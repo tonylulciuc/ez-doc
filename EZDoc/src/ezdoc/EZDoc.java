@@ -15,9 +15,8 @@ public class EZDoc {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //FileViewerFrame display = new FileViewerFrame(System.getProperty("user.dir"));
-        FileWorker worker = new FileWorker();
-        worker.processFile("src\\ezdoc\\", "EZFile.java");
+       EZDocGui ezg = new EZDocGui();
+       ezg.runApp();
  
     }
     

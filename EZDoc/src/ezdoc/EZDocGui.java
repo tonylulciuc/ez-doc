@@ -515,7 +515,7 @@ class EZDocGui {
         }
     }
 
-    public static void main(String[] args) {
+    public void runApp() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try {
