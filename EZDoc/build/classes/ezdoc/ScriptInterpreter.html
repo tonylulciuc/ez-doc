@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>EZ-Doc</title>
+<link rel="stylesheet" href="style.css" type="text/css">
+<style>
+body{
+background-color:blue;
+color:orange;
+font-family:Times New Roman;
+font-weight: bold;
+}
+</style></head>
+<body><div class='Class'><br>
+public class ScriptInterpreter </div><br><table><div class='author'><tr><td>Author:<br></td><td> Matt
+ </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
+    private boolean findCommands() {</th></div><br><div class='description'><tr><td>Description:<br></td><td>This method goes through my array of strings and attempts to build the arrayLists of commands
+    and arguments to be passed to the ScriptMethods class
+    #param No parameter is passed
+    #return This method returns true if it makes it through, otherwise it returns false indicating an
+    error occured
+    </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
+    private void generateCommandAndMethodArrays() {</th></div><br><div class='description'><tr><td>Description:<br></td><td>this method goes through the string retrieved from the command script and generates a multidimensional array. The [k][0]th element
+     is always the command and the [k][1 through j] element represent the methods that must be called for that command.
+    #param No parameter is needed for this method
+    #return void method so no return
+    </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
+    private StringBuilder buildHTMLString() {</th></div><br><div class='description'><tr><td>Description:<br></td><td>The buildHTMLString will use reflection to call the correct Instruction class methods and pass the substrings to perform work.
+     The return from these method calls will then be put together utilizing a StringBuilder and returned to the ScriptInterpreter
+    </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
+    private String cleanedFileInput(String s) {</th></div><br><div class='description'><tr><td>Description:<br></td><td>This method simply goes through the entire input file and assumes we are looking at a class file and removes all of the source code from
+     methods. This leaves us with essentially a class file with its methods and the comments that describe the method.
+    #param String 's' is the String that represents the entire file data you want built into an HTML document
+    #return Returns a string that has all source code other than class and method declarations removed
+    </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
+    private String annotationCheck(String s){</th></div><br><div class='description'><tr><td>Description:<br></td><td>Checks to see if an annotation is present, returns null if it does not
+    match one of the standard Java annotations.</td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
+    private String internalStyle(){</th></div><br><div class='description'><tr><td>Description:<br></td><td>adds internal CSS from the customization.txt document to the HTML page. This
+    allows the user to make simple adjustments to the look such as font, text color,
+    background color etc.
+    </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
+    private void formatOutput(){</th></div><br><div class='description'><tr><td>Description:<br></td><td>the formatOutput function will determine if the users want the default layout,
+    table or list for the how the information is displayed.
+    </td></tr></div><br><div class='method'></div></body></html>

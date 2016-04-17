@@ -1,0 +1,48 @@
+.Class{
+text-align:center;
+font-weight:bold;
+font-size:32px;
+}
+
+.method{
+text-align:left;
+margin-left:10%;
+font-weight:bold;
+font-size:20px;
+}
+
+.description{
+margin-left:15%;
+font-size:18px;
+}
+
+.param{
+margin-left:15%;
+font-size:18px;
+}
+
+.author{
+margin-left:15%;
+font-size:18px;
+}
+
+.return{
+margin-left:15%;
+font-size:18px;
+}
+table{
+	border: 1px solid black;
+	text-align:center;
+	margin-right:auto;
+	margin-left:auto;
+}
+tr{
+	border: 1px solid black;
+}
+td{
+	border: 1px solid black;
+}
+th{
+	margin-right:auto;
+	margin-left:auto;
+}
