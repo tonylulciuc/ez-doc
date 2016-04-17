@@ -2,6 +2,7 @@
 BUILD OUTPUT DESCRIPTION
 ========================
 
+
 When you build an Java application project that has a main class, the IDE
 automatically copies all of the JAR
 files on the projects classpath to your projects dist/lib folder. The IDE
@@ -30,3 +31,16 @@ the projects runtime path.
 in the Projects window and choose Properties. Then click Run and enter the
 class name in the Main Class field. Alternatively, you can manually type the
 class name in the manifest Main-Class element.
+
+
+===================================PROGRAM INFORMATION=================================================
+
+	DIST. CONTENTS:
+			+folder root/src/ezdoc/
+			++which has : img/16x16_compose.png
+				      img/32x32_compose.png
+				      Customization.txt
+				      style.txt
+			+root/testfile/Commands.txt
+			+root/EZDoc.jar
+

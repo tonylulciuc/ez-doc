@@ -36,14 +36,13 @@ public class FileWorker implements FileTranslator {
      * @param _strFileName [in] file name
      */
     @Override
-    public void processFile(String _strPath, String _strFileName)
-    {
+    public void processFile(String _strPath, String _strFileName){
         // TODO: code to translate file to web report goes here
-        EZFile file = new EZFile();
-        String[] html = _strFileName.split("\\.", 0);
-        String data = null;
-        byte[] dhtml = null;
-        int iSize = 0;
+        EZFile file   = new EZFile();
+        String[] html = null;
+        String data   = null;
+        byte[] dhtml  = null;
+        int iSize     = 0;
         
         file.open(null, _strPath, IOFlag.READ);
         file.setBufferSize(512);
@@ -59,10 +58,29 @@ public class FileWorker implements FileTranslator {
             if (strReportPath.length() == 0)
                 strReportPath = _strPath;
             
+            html = strReportPath.split("\\.", 0);
             dhtml = si.getByteArray();
 
-            file.open(strReportPath, html[0] + ".html", IOFlag.WRITE); 
+            file.open(html[0], ".html", IOFlag.WRITE); 
             file.write(dhtml, 0, dhtml.length);
+            file.close();
+            
+            if (file.open(System.getProperty("user.dir") + "\\src\\ezdoc\\", "style.css", IOFlag.READ) == false)
+                file.open(System.getProperty("user.dir"), "style.css", IOFlag.READ);
+            
+            data = file.readFile();
+            file.close();
+            
+            html = strReportPath.split("\\\\", 0);
+            iSize = html.length - 1;
+            strReportPath = html[0] + "\\\\";
+            
+            for (int i = 1; i < iSize; i++)
+                strReportPath += html[i] + "\\";
+            
+            
+            file.open(strReportPath, "style.css", IOFlag.WRITE);
+            file.write(data.getBytes(), 0, data.length());
             file.close();
             fsState = FileState.FILE_SUCCESS;
             
