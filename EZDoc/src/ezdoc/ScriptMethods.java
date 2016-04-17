@@ -13,7 +13,18 @@ public class ScriptMethods {
 
     private static final String lessThan = "&lt;";      // NON-Modifiable data member
     private static final String greaterThan = "&gt;";   // NON-Modifiable data member
-
+    public static String outerFormatTagStart;
+    public static String innerFormatTagStart;
+    public static String outerFormatTagEnd;
+    public static String innerFormatTagEnd;
+    public static String tableDataTagStart;
+    public static String tableDataTagEnd;
+    public static String tableHeaderTagStart;
+    public static String tableHeaderTagEnd;
+    public static String openingBracket;
+    public static String closingBracket;
+    private static boolean firstMethod=false;
+    
     public static String classDec(String s) {
         
         StringBuilder returnHTML = new StringBuilder();
@@ -37,15 +48,7 @@ public class ScriptMethods {
 
         temp1 = s.substring(0, i);
 
-        /*necessary to create valid HTML document*/
-        returnHTML.append("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" >\n"
-                + "<html>\n"
-                + "<head>\n"
-                + "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
-                + "<title>EZ-Doc</title>\n"
-                + "<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n"
-                + "</head>\n"
-                + "<body>");
+        
 
         returnHTML.append("<div class='Class'><br>");
         
@@ -77,6 +80,7 @@ public class ScriptMethods {
             i++;
         }
         returnHTML.append("</div><br>");
+        returnHTML.append(outerFormatTagStart);
 
         return returnHTML.toString();
     }
@@ -101,8 +105,19 @@ public class ScriptMethods {
         temp1 = s.substring(1, i);
         temp1.replaceAll("\n", "");
 
-        returnHTML.append("<br><div class='method'>}<br>");
+        returnHTML.append(outerFormatTagEnd);
+        returnHTML.append(outerFormatTagStart);
+        returnHTML.append("<br><div class='method'>");
+        
+        if(firstMethod){
+        returnHTML.append(closingBracket);
+        }
+        
+        returnHTML.append("<br>");
+        
         i = 0;
+        returnHTML.append(tableHeaderTagStart);
+        
         while (i < temp1.length()) {
 
             if (temp1.charAt(i) == '<') {
@@ -114,7 +129,11 @@ public class ScriptMethods {
             }
             i++;
         }
-        returnHTML.append("{</div><br>");
+        returnHTML.append(tableHeaderTagEnd);
+        returnHTML.append(openingBracket);
+        returnHTML.append("</div><br>");
+        
+        firstMethod=true;
 
         return returnHTML.toString();
     }
@@ -141,7 +160,14 @@ public class ScriptMethods {
 
         returnStatement = temp2.substring(i, temp2.length());
 
-        returnHTML.append("<div class='param'>Parameter:<br>");
+        
+        returnHTML.append("<div class='param'>");
+        returnHTML.append(innerFormatTagStart);
+        returnHTML.append(tableDataTagStart);
+        returnHTML.append("Parameter:<br>");
+        returnHTML.append(tableDataTagEnd);
+        
+        returnHTML.append(tableDataTagStart);
         i = 0;
         while (i < returnStatement.length()) {
 
@@ -154,7 +180,11 @@ public class ScriptMethods {
             }
             i++;
         }
-        returnHTML.append("</div><br>");
+        returnHTML.append(tableDataTagEnd);
+        returnHTML.append(innerFormatTagEnd);
+        returnHTML.append("</div>");
+        
+        returnHTML.append("<br>");
 
         return returnHTML.toString();
     }
@@ -185,8 +215,15 @@ public class ScriptMethods {
 
         returnStatement = temp2.substring(i, temp2.length());
 
-        returnHTML.append("<div class='return'>Return:<br>");
+        
+        returnHTML.append("<div class='return'>");
+        returnHTML.append(innerFormatTagStart);
+        returnHTML.append(tableDataTagStart);
+        returnHTML.append("Return:<br>");
+        returnHTML.append(tableDataTagEnd);
         i = 0;
+        returnHTML.append(tableDataTagStart);
+        
         while (i < returnStatement.length()) {
 
             if (returnStatement.charAt(i) == '<') {
@@ -198,7 +235,12 @@ public class ScriptMethods {
             }
             i++;
         }
-        returnHTML.append("</div><br>");
+        
+        returnHTML.append(tableDataTagEnd);
+        returnHTML.append(innerFormatTagEnd);
+        returnHTML.append("</div>");
+        
+        returnHTML.append("<br>");
 
         return returnHTML.toString();
     }
@@ -218,7 +260,15 @@ public class ScriptMethods {
         temp2 = temp1.replaceAll("\\*", "");
         temp2.trim();
 
-        returnHTML.append("<div class='description'>Description:<br>");
+        
+        returnHTML.append("<div class='description'>");
+        returnHTML.append(innerFormatTagStart);
+        returnHTML.append(tableDataTagStart);
+        returnHTML.append("Description:<br>");
+        returnHTML.append(tableDataTagEnd);
+        
+        returnHTML.append(tableDataTagStart);
+        
         int i = 0;
         while (i < temp2.length()) {
 
@@ -231,7 +281,11 @@ public class ScriptMethods {
             }
             i++;
         }
-        returnHTML.append("</div><br>");
+        returnHTML.append(tableDataTagEnd);
+        returnHTML.append(innerFormatTagEnd);
+        returnHTML.append("</div>");
+        
+        returnHTML.append("<br>");
 
         return returnHTML.toString();
 

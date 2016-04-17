@@ -30,3 +30,19 @@ font-size:18px;
 margin-left:15%;
 font-size:18px;
 }
+table{
+	border: 1px solid black;
+	text-align:center;
+	margin-right:auto;
+	margin-left:auto;
+}
+tr{
+	border: 1px solid black;
+}
+td{
+	border: 1px solid black;
+}
+th{
+	margin-right:auto;
+	margin-left:auto;
+}

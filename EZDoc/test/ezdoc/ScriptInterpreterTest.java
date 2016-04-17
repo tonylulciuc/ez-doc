@@ -51,17 +51,15 @@ public class ScriptInterpreterTest {
 
         file.open("testfile\\", "Commands.txt", IOFlag.WRITE);
 
-        String str = "@\r\nreturn: returns\r\nparam: param \r\nauthor: author";
+        String str = "@\r\ntest\r\nreturn: returns\r\nparam: param \r\nauthor: author";
         assertEquals(true, file.write(str.getBytes(), 0, str.length()));
 
         ScriptInterpreter si = new ScriptInterpreter("Test");
-        /*assertEquals(si.commandsAndMethods[0][0], "Class");
-         assertEquals(si.commandsAndMethods[1][0], "Method");
-         assertEquals(si.commandsAndMethods[2][0], "#");
-         assertEquals(si.commandsAndMethods[3][0], "Input");
-         assertEquals(si.commandsAndMethods[4][0], "Output");
-         assertEquals(si.commandsAndMethods[5][0], "OVariables");
-         */
+         assertEquals(si.commandsAndMethods[0][0], "return");
+         assertEquals(si.commandsAndMethods[1][0], "param");
+         assertEquals(si.commandsAndMethods[2][0], "author");
+         
+       
         file.close();
 
     }

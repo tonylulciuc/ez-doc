@@ -4,106 +4,113 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>EZ-Doc</title>
 <link rel="stylesheet" href="style.css" type="text/css">
-</head>
+<style>
+body{
+background-color:blue;
+color:orange;
+font-family:Courier New;
+font-weight: bold;
+}
+</style></head>
 <body><div class='Class'><br>
-public class EZFile </div><br><br><div class='method'>}<br>
+public class EZFile </div><br><table></table><table><br><div class='method'><br><th style='text-align:center'>
     public int getBufferSize()
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       Inspect buffer size
-      @return int, size of buffer
-     </div><br><br><div class='method'>}<br>
+      </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> int, size of buffer
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public byte[] getBuffer()
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       InspectMutate Buffer
-      @return byte[], data to write to or read from file
-     </div><br><br><div class='method'>}<br>
+      </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> byte[], data to write to or read from file
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public ArrayList&lt;String&gt; getParsedBuffer()
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       InspectMutate parsed buffer elements
-      @return List of elements of buffer
-     </div><br><br><div class='method'>}<br>
+      </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> List of elements of buffer
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public ArrayList&lt;Integer&gt; getFilterIndex()
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       InspectMutate filter indices
-      @return ArrayList&lt;Integer&gt;, indices of where filters are located in parsed list
-     </div><br><br><div class='method'>}<br>
+      </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> ArrayList&lt;Integer&gt;, indices of where filters are located in parsed list
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public int getTotalBytesRead()
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       Current total bytes read from file
-      @return int, bytes read from file
-     </div><br><br><div class='method'>}<br>
+      </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> int, bytes read from file
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public Boolean setBufferSize(int _iBufSize)
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       Reallocates buffer to new size
-      @param _iBufSize[in] new buffer size
-      @return Boolean, true if the buffer was reset else false
-     </div><br><br><div class='method'>}<br>
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _iBufSize[in] new buffer size
+      </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> Boolean, true if the buffer was reset else false
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public void setStringToParse(String _str)
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       Sets string to parse 
-      @param _str 
-     </div><br><br><div class='method'>}<br>
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _str 
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public Boolean open(String _strPath, String _strFile, IOFlag _ioFlag)
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       OpensCreates file for IO operations
-      @param _strPath[in] file path, exclude if fle in current working dir.
-      @param _strFile[in] file name
-      @param _ioFlag[in] enumeration representing input or output
-      @return Boolean, true on successful file instantiation else false.
-     </div><br><br><div class='method'>}<br>
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _strPath[in] file path, exclude if fle in current working dir.
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _strFile[in] file name
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _ioFlag[in] enumeration representing input or output
+      </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> Boolean, true on successful file instantiation else false.
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public void close()
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       Closes open file
-     </div><br><br><div class='method'>}<br>
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public Boolean parseBuffer(String[] _strFilter)
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       Separates buffer into an ArrayList, filter may be applied to buffer to 
       create more buffer elements
-      @param _strFilter[in] character sequences to search for in buffer
-      @return Boolean, true if buffer was organized else false 
-     </div><br><br><div class='method'>}<br>
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _strFilter[in] character sequences to search for in buffer
+      </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> Boolean, true if buffer was organized else false 
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public Boolean read(int _iOffSet)
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       Read from file
-      @param _iOffSet[in] offset from current position
-      @return boolean, true on successful read else false
-     </div><br><br><div class='method'>}<br>
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _iOffSet[in] offset from current position
+      </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> boolean, true on successful read else false
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public Boolean read()
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       Read from file
-      @return boolean, true on successful read else false
-     </div><br><br><div class='method'>}<br>
+      </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> boolean, true on successful read else false
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public Boolean write(byte[] _bData, int _iOffSet, int _iLength)            
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       Write to file
-      @param _bData[in] data to write
-      @param _iOffSet[in] offset from current position
-      @param _iLength[in] length of buffer
-      @return Boolean, true on success else false
-     </div><br><br><div class='method'>}<br>
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _bData[in] data to write
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _iOffSet[in] offset from current position
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _iLength[in] length of buffer
+      </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> Boolean, true on success else false
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public Boolean parseFile(String[] _strFilter)
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       Reads and Parses entire file with filter
-      @param _strFilter[in] filter for file
-      @return Boolean, true if data was read from file
-     </div><br><br><div class='method'>}<br>
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _strFilter[in] filter for file
+      </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> Boolean, true if data was read from file
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     public String readFile()
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
        Returns file contents in a String object
-       @return String, file data
-     </div><br><br><div class='method'>}<br>
+       </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> String, file data
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     protected int applyFilter(String[] _strFilter, int _iStartIndex)
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       Finds Char sequences based on filter specifications and adds to list
-      @param _strFilter[in] buffer filter
-      @param _iStartIndex[in] current position in buffer
-      @return int, position of first character for the first filter found else 
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _strFilter[in] buffer filter
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _iStartIndex[in] current position in buffer
+      </td></tr></div><br><div class='return'><tr><td>Return:<br></td><td> int, position of first character for the first filter found else 
               -1.
-     </div><br><br><div class='method'>}<br>
+     </td></tr></div><br></table><table><br><div class='method'><br><th style='text-align:center'>
     private void setBytes(int _iStart, int _iEnd, byte _bByte)
-{</div><br><div class='description'>Description:<br>
+</th></div><br><div class='description'><tr><td>Description:<br></td><td>
       Set buffer block to some value
-      @param _iStart[in] start pos
-      @param _iEnd[in] ens pos
-      @param _bByte[in] value to replace buffer block with
-     </div><br>}</body></html>
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _iStart[in] start pos
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _iEnd[in] ens pos
+      </td></tr></div><br><div class='param'><tr><td>Parameter:<br></td><td> _bByte[in] value to replace buffer block with
+     </td></tr></div><br><div class='method'></div></body></html>

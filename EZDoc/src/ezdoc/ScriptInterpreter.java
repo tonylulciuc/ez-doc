@@ -31,11 +31,13 @@ public class ScriptInterpreter {
     final int numOfCommands = 10;
     String[][] commandsAndMethods = new String[numOfCommands][10];
     String test;
-    public String htmlString;
+    public StringBuilder htmlString = new StringBuilder();
     public String cleanedInput;
     public String stringArray[];
     String delim;
     String descriptionCommand = "description";
+    String styleSheet;
+    String format;
 
     public ScriptInterpreter(String s) {
         EZFile file = new EZFile();
@@ -59,11 +61,25 @@ public class ScriptInterpreter {
             stringArray[i] = stringArray[i].trim();
             i++;
         }
+        
+        styleSheet="<style>\nbody{\n" +internalStyle().trim() + "\n}\n</style>";
+        
+        formatOutput();
 
         /*The findCommands method builds linked lists of commands and arguments.*/
         commandFound = findCommands();
+        
+        htmlString.append("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" >\n"
+                + "<html>\n"
+                + "<head>\n"
+                + "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n"
+                + "<title>EZ-Doc</title>\n"
+                + "<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n"
+                + styleSheet
+                + "</head>\n"
+                + "<body>");
 
-        htmlString = buildHTMLString();
+        htmlString.append(buildHTMLString());
 
     }
 
@@ -190,11 +206,21 @@ public class ScriptInterpreter {
          comments
          */
         delim = Character.toString(test.charAt(i));
+        
 
         while (test.charAt(i) != '\n') {
             i++;
         }
         i++;
+        
+        
+        format = Character.toString(test.charAt(i));
+        
+        while (test.charAt(i) != '\n') {
+            i++;
+        }
+        i++;
+        
         begin = i;
 
         while (i < test.length()) {
@@ -230,7 +256,7 @@ public class ScriptInterpreter {
     /*The buildHTMLString will use reflection to call the correct Instruction class methods and pass the substrings to perform work.
      The return from these method calls will then be put together utilizing a StringBuilder and returned to the ScriptInterpreter
     */
-    private String buildHTMLString() {
+    private StringBuilder buildHTMLString() {
         int i = 0;
         int j = 0;
         int k = 1;
@@ -267,9 +293,12 @@ public class ScriptInterpreter {
         }
 
         /*closing the HTML document properly*/
-        returnString.append("}</body></html>");
+        returnString.append("<div class='method'>");
+        returnString.append(ScriptMethods.closingBracket);
+        returnString.append("</div>");
+        returnString.append("</body></html>");
 
-        return returnString.toString();
+        return returnString;
     }
 
     /*This method simply goes through the entire input file and assumes we are looking at a class file and removes all of the source code from
@@ -283,6 +312,7 @@ public class ScriptInterpreter {
         boolean firstBracket = false;
         boolean insideMethod = false;
         Stack stack = new Stack();
+        boolean quotes = false;
 
         /*loops until the null character is read in, signalling the end of the string*/
         while (i < s.length()) {
@@ -290,14 +320,28 @@ public class ScriptInterpreter {
             /*if you are inside a method and read in a closing bracket then pop the top opening bracket. If the stack is empty
              that means you have exited the method source code so set insideMethod to false
              */
-            if (insideMethod && (s.charAt(i) == '}' && s.charAt(i-1) == ' ')){
+            
+            if(insideMethod && (s.charAt(i)=='"' || s.charAt(i)=='\'') && quotes){
+                quotes=false;
+                
+            }
+            
+            else if(insideMethod && (s.charAt(i)=='"' || s.charAt(i)=='\'') && !quotes){
+                quotes=true;
+                
+            }
+            
+            
+            if (insideMethod && s.charAt(i) == '}' && !quotes){
                 stack.pop();
 
                 if (stack.isEmpty()) {
                     insideMethod = false;
+                    quotes=false;
 
                 }
-            } /*if you are inside of a method and you read an opening bracket, push that bracket onto the stack*/ else if (insideMethod && s.charAt(i) == '{') {
+            } /*if you are inside of a method and you read an opening bracket, push that bracket onto the stack*/ 
+                else if (insideMethod && s.charAt(i) == '{' && !quotes) {
                 stack.push(s.charAt(i));
             }
 
@@ -305,11 +349,11 @@ public class ScriptInterpreter {
              to true and add the bracket character to the tempString. This bracket will be the bracket for the class
              not a specific method.
              */
-            if (!insideMethod && !firstBracket && s.charAt(i) == '{') {
+             if (!insideMethod && !firstBracket && s.charAt(i) == '{') {
                 firstBracket = true;
                 tempString = tempString.concat(Character.toString(s.charAt(i)));
             } /*This means you are entering a method so we want to ignore the source code in the method*/ 
-            else if (!insideMethod && s.charAt(i) == '{' && firstBracket ) {
+            else if (!insideMethod && s.charAt(i) == '{' && firstBracket) {
                 insideMethod = true;
                 stack.push(s.charAt(i));
                 tempString = tempString.concat("{");
@@ -327,6 +371,8 @@ public class ScriptInterpreter {
         return tempString;
     }
     
+    /*Checks to see if an annotation is present, returns null if it does not
+    match one of the standard Java annotations.*/
     private String annotationCheck(String s){
         
         if(s.startsWith("Override")){
@@ -343,6 +389,71 @@ public class ScriptInterpreter {
         
         
         return null;
+    }
+    
+    /*adds internal CSS from the customization.txt document to the HTML page. This
+    allows the user to make simple adjustments to the look such as font, text color,
+    background color etc.
+    */
+    private String internalStyle(){
+        EZFile file = new EZFile();
+        String style;
+        file.open("src\\ezdoc\\", "Customization.txt", IOFlag.READ);
+        file.setBufferSize(250);
+        file.read(0);
+        style = new String(file.getBuffer());
+        file.parseBuffer(null);
+        
+        return style;
+    }
+    
+    /*the formatOutput function will determine if the users want the default layout,
+    table or list for the how the information is displayed.
+    */
+    private void formatOutput(){
+        
+        if(format.equals("t")){
+            ScriptMethods.outerFormatTagStart="<table>";
+            ScriptMethods.outerFormatTagEnd="</table>";
+            ScriptMethods.innerFormatTagStart="<tr>";
+            ScriptMethods.innerFormatTagEnd="</tr>";
+            ScriptMethods.tableDataTagStart="<td>";
+            ScriptMethods.tableDataTagEnd="</td>";
+            ScriptMethods.tableHeaderTagStart="<th style='text-align:center'>";
+            ScriptMethods.tableHeaderTagEnd="</th>";
+            ScriptMethods.closingBracket="";
+            ScriptMethods.openingBracket="";
+        }
+        
+        else if(format.equals("d")){
+             ScriptMethods.outerFormatTagStart="";
+            ScriptMethods.outerFormatTagEnd="";
+            ScriptMethods.innerFormatTagStart="";
+            ScriptMethods.innerFormatTagEnd="";
+            ScriptMethods.tableDataTagStart="";
+            ScriptMethods.tableDataTagEnd="";
+            ScriptMethods.tableHeaderTagStart="";
+            ScriptMethods.tableHeaderTagEnd="";
+            ScriptMethods.closingBracket="}";
+            ScriptMethods.openingBracket="{";
+            
+        }
+        
+        else if(format.equals("l")){
+             ScriptMethods.outerFormatTagStart="<ul>";
+            ScriptMethods.outerFormatTagEnd="</ul>";
+            ScriptMethods.innerFormatTagStart="<li>";
+            ScriptMethods.innerFormatTagEnd="</li>";
+            ScriptMethods.tableDataTagStart="";
+            ScriptMethods.tableDataTagEnd="";
+            ScriptMethods.tableHeaderTagStart="";
+            ScriptMethods.tableHeaderTagEnd="";
+            ScriptMethods.closingBracket="}";
+            ScriptMethods.openingBracket="{";
+            
+        }
+        
+        
     }
 
 }
