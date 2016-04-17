@@ -95,6 +95,7 @@ public class ScriptInterpreter {
         String s;
         StringBuilder argumentString = new StringBuilder();
         boolean command = false;
+        boolean validDescription=false;
 
         String classArray[] = stringArray[0].split("\\Q*/\\E");
 
@@ -174,9 +175,20 @@ public class ScriptInterpreter {
                         j++;
                     }
 
-                    if (!command && comments[k].matches("[a-zA-Z]+")) {
+                    if (!command){
+                        int f=0;
+                        
+                        while(f<comments[k].length()){
+                            if(Character.isAlphabetic(comments[k].charAt(f))){
+                                validDescription=true;
+                            }
+                            f++;
+                        }
+                        
+                        if(validDescription){
                         commandsFound.add(descriptionCommand);
                         arguments.add(comments[k]);
+                        }
                     }
                     
                     if(command)

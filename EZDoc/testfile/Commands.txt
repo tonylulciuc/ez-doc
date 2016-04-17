@@ -1,5 +1,5 @@
 @
-default
+table
 return: returns
 param: param 
 author: author
