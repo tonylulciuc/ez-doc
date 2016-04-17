@@ -21,6 +21,12 @@ public class ScriptMethods {
         int i = 0;
         int iNext = 0;
         
+        /*If the string passed is null, simply return the empty string*/
+        if(s == null || s.equals("")){
+            return "";
+        }
+        
+        
         // ADDED : Sentinel value for while loop
         //         Loops forever or breaks if '{' not found
         int iSize = s.length();
@@ -79,6 +85,12 @@ public class ScriptMethods {
         String temp1;
         String returnStatement;
         StringBuilder returnHTML = new StringBuilder();
+        
+        /*If the string passed is null, simply return the empty string*/
+        if(s == null || s.equals("")){
+            return "";
+        }
+        
         s.trim();
 
         int i = 2;
@@ -112,6 +124,12 @@ public class ScriptMethods {
         String temp2;
         String returnStatement;
         StringBuilder returnHTML = new StringBuilder();
+        
+         /*If the string passed is null, simply return the empty string*/
+        if(s == null || s.equals("")){
+            return "";
+        }
+        
         temp1 = s.replaceAll("/", "");
         temp2 = temp1.replaceAll("\\*", "");
         temp2.trim();
@@ -150,6 +168,12 @@ public class ScriptMethods {
         String temp2;
         String returnStatement;
         StringBuilder returnHTML = new StringBuilder();
+        
+         /*If the string passed is null, simply return the empty string*/
+        if(s == null || s.equals("")){
+            return "";
+        }
+        
         temp1 = s.replaceAll("/", "");
         temp2 = temp1.replaceAll("\\*", "");
         temp2.trim();
@@ -184,6 +208,12 @@ public class ScriptMethods {
         String temp2;
 
         StringBuilder returnHTML = new StringBuilder();
+        
+          /*If the string passed is null, simply return the empty string*/
+        if(s == null || s.equals("")){
+            return "";
+        }
+        
         temp1 = s.replace("/", "");
         temp2 = temp1.replaceAll("\\*", "");
         temp2.trim();
