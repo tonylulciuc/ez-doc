@@ -248,7 +248,7 @@ public class ScriptMethods {
     public static String description(String s) {
         String temp1;
         String temp2;
-
+        
         StringBuilder returnHTML = new StringBuilder();
 
         /*If the string passed is null, simply return the empty string*/
@@ -259,6 +259,10 @@ public class ScriptMethods {
         temp1 = s.replace("/", "");
         temp2 = temp1.replaceAll("\\*", "");
         temp2.trim();
+        
+        if(temp2.startsWith("desc")){
+        temp2=temp2.replaceFirst("desc", "");
+        }
 
         returnHTML.append("<div class='description'>");
         returnHTML.append(innerFormatTagStart);

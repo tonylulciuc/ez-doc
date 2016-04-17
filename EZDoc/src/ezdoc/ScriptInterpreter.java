@@ -174,10 +174,12 @@ public class ScriptInterpreter {
                         j++;
                     }
 
-                    if (!command) {
+                    if (!command && comments[k].matches("[a-zA-Z]+")) {
                         commandsFound.add(descriptionCommand);
+                        arguments.add(comments[k]);
                     }
-
+                    
+                    if(command)
                     arguments.add(comments[k]);
                     k++;
                     command = false;

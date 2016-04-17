@@ -45,8 +45,9 @@ public class EZFile {
     }
     
     /**
-     * Inspect buffer size
      * @return int, size of buffer
+     * @desc Inspect buffer size
+     * 
      */
     public int getBufferSize()
     {
