@@ -50,13 +50,12 @@ public class FileWorker implements FileTranslator {
         fsState = FileState.FILE_ACTIVE;
         data = file.readFile();
         
-        if (data.length() > 0){
+        if (data.length() > 0 && _strPath.length() > 0){
             
             si = new ScriptInterpreter(data);
             file.close();       
-
-            if (strReportPath.length() == 0)
-                strReportPath = _strPath;
+            
+            strReportPath = _strPath;
             
             html = strReportPath.split("\\.", 0);
             dhtml = si.getByteArray();
@@ -65,8 +64,10 @@ public class FileWorker implements FileTranslator {
             file.write(dhtml, 0, dhtml.length);
             file.close();
             
-            if (file.open(System.getProperty("user.dir") + "\\src\\ezdoc\\", "style.css", IOFlag.READ) == false)
-                file.open(System.getProperty("user.dir"), "style.css", IOFlag.READ);
+            if (file.open(System.getProperty("user.dir") + "\\src\\ezdoc\\", "style.css", IOFlag.READ) == false){
+                if (file.open("\\src\\ezdoc\\", "style.css", IOFlag.READ) == false)
+                    System.exit(1);
+            }
             
             data = file.readFile();
             file.close();
