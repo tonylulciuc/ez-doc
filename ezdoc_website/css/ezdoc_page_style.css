@@ -1,0 +1,81 @@
+/* CSS Document */
+
+body {
+    margin: 0px;
+}
+
+/* MAIN (page title<header>) Classes */
+
+    div.main{
+        width: 100%;
+        height: 100%;
+        margin:0px;      
+        background: #EEEEEE;
+    }
+    
+    table.main{
+        margin: 0px;
+        width: 100%;
+        height: 3%;
+        background: #DDDDDD;
+        border: 0px;
+    }
+    
+    tr.main{
+        border: 0px;
+        margin: 0px;
+        height: 100%;
+    }
+    
+    td.main{
+        width: 10%;
+        border: 0px;
+    }
+    
+    td.mainSpace{
+        width: 60%;
+    }
+    
+    button.main{
+        width: 100%;
+        height: 100%;   
+        border: 0px;
+        background: #DDDDDD;
+        color: #3434A7;
+        font-size: 1.2em;
+    }
+    
+    img.main
+    {
+        width: 100%;
+    }
+    
+    
+    button.main:active{
+        background: #BBBBBB !important;
+    }
+    button.main:hover{
+        background: #EEEEEE;
+    }
+ /* CONTENT Classes*/
+ 
+     section.content{
+        width: 60%;
+    }
+    
+    p.contentSection{
+        font-size: 1.5em;
+        color:  #3434A7;
+        text-align: left;
+    }
+    p.content{
+        font-size: 1.2em;
+        color:  #3434A7;
+        text-align: left;
+    }
+    
+    
+       
+    
+    
+    
