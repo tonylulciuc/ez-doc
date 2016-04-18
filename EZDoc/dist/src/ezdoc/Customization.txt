@@ -1,4 +1,0 @@
-background-color:blue;
-color:orange;
-font-family:Times New Roman;
-font-weight: bold;
