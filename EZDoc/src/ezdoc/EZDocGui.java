@@ -239,7 +239,7 @@ class EZDocGui {
              // Opens Customization doc
              
             
-             JButton custom = new JButton("Customize");
+            JButton custom = new JButton("Customize");
             custom.setMnemonic('l');
 
             custom.addActionListener(new ActionListener() {
@@ -255,7 +255,25 @@ class EZDocGui {
                 }
             });
             
-            toolBar.add(custom);       
+            toolBar.add(custom);    
+            
+            JButton commands = new JButton("Commands");
+            commands.setMnemonic('l');
+
+            commands.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent ae) {
+                    try {
+                        System.out.println("Commands File");
+                        currentFile = new File("testfile\\Commands.txt");
+                        desktop.open(currentFile);
+                    } catch (Throwable t) {
+                        showThrowable(t);
+                    }
+                    gui.repaint();
+                }
+            });
+            
+            toolBar.add(commands);  
             // ADDED END
             
             
