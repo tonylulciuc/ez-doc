@@ -235,6 +235,30 @@ class EZDocGui {
              toolBar.add(processFile);
              
             
+             // ADDED BY : Antony Lulciuc
+             // Opens Customization doc
+             
+            
+             JButton custom = new JButton("Customize");
+            custom.setMnemonic('l');
+
+            custom.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent ae) {
+                    try {
+                        System.out.println("Customize File");
+                        currentFile = new File("src\\ezdoc\\Customization.txt");
+                        desktop.open(currentFile);
+                    } catch (Throwable t) {
+                        showThrowable(t);
+                    }
+                    gui.repaint();
+                }
+            });
+            
+            toolBar.add(custom);       
+            // ADDED END
+            
+            
             int count = fileDetailsLabels.getComponentCount();
             for (int ii = 0; ii < count; ii++) {
                 fileDetailsLabels.getComponent(ii).setEnabled(false);
